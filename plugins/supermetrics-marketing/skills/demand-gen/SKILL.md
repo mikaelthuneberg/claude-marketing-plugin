@@ -13,7 +13,7 @@ These workflows rely on the **Supermetrics connector for Claude** and specifical
 
 Before running anything, check that the connector is active — look for Supermetrics tools in this session (`data_query`, `accounts_discovery`, etc.). If they aren't present, prompt the user:
 
-> This workflow needs the Supermetrics connector for Claude to pull both your ad platform data and Google Analytics 4. Install it at https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80
+> This workflow needs the Supermetrics connector for Claude to pull both your ad platform data and Google Analytics 4. It ships with this plugin — run `/mcp`, select **supermetrics** and sign in (a free trial account works). Then run `/supermetrics-marketing:setup` to connect your platforms.
 >
 > Connect at least one ad platform AND Google Analytics 4 — the comparison between what ad platforms reported and what GA4 saw is the whole point.
 

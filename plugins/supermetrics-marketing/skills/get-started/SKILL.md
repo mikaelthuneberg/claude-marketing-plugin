@@ -1,0 +1,32 @@
+---
+name: get-started
+description: First-run onboarding for the Supermetrics connector. Use when the user has just installed the plugin, asks how to get started, wants to connect Google Ads / Meta / GA4 / LinkedIn or another marketing platform, asks what data they can access, or when a Supermetrics tool call fails because they aren't signed in or a data source isn't connected.
+---
+
+# Get started with Supermetrics
+
+Take the user from install to their first real answer in as few turns as possible. Do each step only if the previous one succeeded.
+
+## 1. Check sign-in
+
+Call `manage_user_and_team` with `action: get_info`.
+
+- **Tool not available or auth error:** the bundled `supermetrics` connector isn't signed in. Tell the user:
+  > Run `/mcp`, select **supermetrics** and sign in with your Supermetrics account. No account? Signing in lets you start a free trial.
+  >
+  > On claude.ai or Claude Desktop, add the connector from https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80 instead.
+
+  Then stop and wait for them.
+- **Success:** greet them by name and team in one line. If the response shows no active license or an expired trial, say so plainly and point to the upgrade link it returns.
+
+## 2. See what's connected
+
+Call `data_source_discovery` (compact output) to see available sources, then `accounts_discovery` for the platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
+
+If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `manage_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`.
+
+## 3. First answer
+
+Once at least one account is connected, run one small useful report straight away — last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (or sessions and conversions for GA4) — and show it as a compact chart or table.
+
+Finish with three example questions tailored to what they connected, and mention the slash commands: `/supermetrics-marketing:weekly-performance`, `/supermetrics-marketing:wasted-spend`, `/supermetrics-marketing:budget-pacing`, `/supermetrics-marketing:exec-summary`.

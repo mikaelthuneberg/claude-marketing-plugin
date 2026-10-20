@@ -1,23 +1,8 @@
-# Supermetrics for Claude — Marketplace
+# Supermetrics for Claude: marketing data and analytics workflows
 
-A Claude Code [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces) distributing marketing analytics workflows built on top of the [Supermetrics connector for Claude](https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80).
+**Ask Claude about your marketing performance and get answers from your live data.** This plugin connects Claude to Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and 150+ other marketing platforms through [Supermetrics](https://supermetrics.com). It adds 42 analysis workflows built by marketers.
 
-## What's in this marketplace
-
-One plugin: **`supermetrics-marketing`**.
-
-It bundles six persona-aligned skill sets totaling **42 workflows**, with **42 helper scripts** and **39 deliverable templates**:
-
-| Skill | Persona | 7 workflows |
-|---|---|---|
-| `/supermetrics-marketing:performance-marketer` | Performance marketer | WoW optimization · Ad fatigue · Creative testing · Daily standup · Search term audit / negative keywords · Cross-channel attribution comparison · Budget reallocation modeler |
-| `/supermetrics-marketing:marketing-leader` | Marketing analytics & leadership | 90-day executive overview · Budget pacing · ROAS benchmarking · Annual planning · New channel investment case · Efficiency vs goals · CAC and LTV unit economics |
-| `/supermetrics-marketing:demand-gen` | B2B demand generation | Traffic-to-conversion audit · Lead-gen efficiency · Pipeline contribution by channel · MQL-to-SQL by source · ABM campaign performance · Email + ads integrated funnel · Webinar / gated content funnel |
-| `/supermetrics-marketing:content-marketer` | Content marketing | Landing page diagnosis · Paid promotion analysis · Organic / SEO audit · Content-to-conversion attribution · Newsletter performance · Video content performance · Content gap analysis |
-| `/supermetrics-marketing:field-marketer` | Field & event marketing | Pre-event channel ROI · Post-event geo-lift · Multi-event portfolio · Event-driven pipeline · Account engagement scoring · Webinar funnel deep dive · Partner event ROI |
-| `/supermetrics-marketing:ecommerce-marketer` | Ecommerce paid acquisition | Blended ROAS + day-of-week · Promotional anomaly detection · SKU-level performance · New vs returning customer ROAS · AOV and basket composition · Subscription retention cohorts · Pre-promo planning model |
-
-Skills are model-invoked — Claude picks them up automatically when the user describes a matching task ("compare last week's Facebook performance to the week before", "did our SF event move the needle locally?", "which landing pages are leaking traffic?"). Users don't need to memorize skill names.
+The Supermetrics connector is included: install the plugin, sign in once, and start asking.
 
 ## Install
 
@@ -26,90 +11,89 @@ Skills are model-invoked — Claude picks them up automatically when the user de
 /plugin install supermetrics-marketing@supermetrics
 ```
 
-The plugin needs the Supermetrics connector to actually pull data. If it's not already connected, each skill prompts the user to install it from the [connector directory](https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80).
+Then run `/supermetrics-marketing:setup`. It signs you in to Supermetrics (OAuth, or a free trial if you're new), shows which platforms are connected, helps you connect one, and runs your first report.
 
-## Local testing
+> Using claude.ai or Claude Desktop? Add the [Supermetrics connector](https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80) from the connector directory.
 
-Without installing, point Claude Code at the plugin directly:
+## Try asking
+
+- "Compare last week's Facebook Ads performance to the week before. What changed and why?"
+- "Which Google Ads search terms spent money last month without converting?"
+- "Are we on track to hit this month's paid media budget?"
+- "Which of our Meta ads are fatiguing and need new creative?"
+- "Rank our channels by ROAS for the last 90 days and recommend where to move budget."
+- "Our ad platforms report 400 conversions but GA4 shows 250. Where's the gap?"
+- "Build a 90-day marketing performance overview for our leadership deck."
+- "Did our San Francisco event lift branded search and traffic in the Bay Area?"
+- "Which landing pages get traffic but don't convert?"
+- "What's our blended ROAS by day of week across Google and Meta?"
+
+## Slash commands
+
+| Command | What it does |
+|---|---|
+| `/supermetrics-marketing:setup` | Sign in, check connected platforms, connect one, run a first report |
+| `/supermetrics-marketing:weekly-performance` | Week-over-week review with prioritised actions |
+| `/supermetrics-marketing:wasted-spend` | Non-converting campaigns, ads and search terms, with the estimated saving |
+| `/supermetrics-marketing:ad-fatigue` | Ads with rising frequency and falling CTR |
+| `/supermetrics-marketing:budget-pacing` | Month-to-date pacing and a month-end forecast per channel |
+| `/supermetrics-marketing:roas-report` | Blended and per-channel ROAS with day-of-week patterns |
+| `/supermetrics-marketing:funnel-audit` | Reconcile what ad platforms report with what GA4 saw |
+| `/supermetrics-marketing:exec-summary` | 90-day cross-channel overview, ready for a deck |
+
+You don't need to remember any of these. Describe what you want and Claude picks the right workflow.
+
+## Workflows by role
+
+| Skill | For | Workflows |
+|---|---|---|
+| `performance-marketer` | Paid media managers | WoW optimization · Ad fatigue · Creative testing · Daily standup · Search terms / negatives · Attribution comparison · Budget reallocation |
+| `marketing-leader` | CMOs, heads of marketing, analysts | 90-day exec overview · Budget pacing · ROAS benchmarking · Annual planning · New channel case · Efficiency vs goals · CAC and LTV |
+| `demand-gen` | B2B demand gen | Traffic-to-conversion audit · Lead-gen efficiency · Pipeline by channel · MQL-to-SQL · ABM · Email + ads funnel · Webinar funnel |
+| `content-marketer` | Content and SEO | Landing page diagnosis · Paid promotion · SEO audit · Content attribution · Newsletter · Video · Content gaps |
+| `field-marketer` | Events and field | Pre-event ROI · Post-event geo-lift · Event portfolio · Event pipeline · Account engagement · Webinar deep dive · Partner events |
+| `ecommerce-marketer` | Ecommerce acquisition | Blended ROAS · Promo anomalies · SKU performance · New vs returning ROAS · AOV and basket · Retention cohorts · Promo planning |
+
+Each workflow pulls data first and then analyzes it. Results come back as charts that colour each change by whether it's good or bad for the business. You can also get a Word doc, spreadsheet or deck when you need something to share.
+
+## Supported platforms
+
+**Paid media:** Google Ads, Meta Ads (Facebook and Instagram), LinkedIn Ads, TikTok Ads, Microsoft Advertising, Amazon Ads, Snapchat, Pinterest, Reddit, X Ads, DV360, Criteo and more.
+**Analytics and SEO:** Google Analytics 4, Search Console, Adobe Analytics, Semrush, YouTube.
+**Social:** Facebook and Instagram insights, LinkedIn Pages, TikTok organic.
+**Ecommerce and CRM:** Shopify, HubSpot, Salesforce, Klaviyo, Mailchimp.
+
+[See all 150+ sources →](https://supermetrics.com/connectors)
+
+## Privacy and safety
+
+- **Read-only.** These workflows never change campaigns, budgets or settings in your ad accounts.
+- **Your data goes only to Supermetrics and your Claude session.** Supermetrics fetches it with your own platform logins, and the plugin adds no telemetry or hooks.
+- **You choose what's connected**, and you can revoke access at any time in the [Supermetrics Hub](https://hub.supermetrics.com).
+
+See the [privacy policy](https://supermetrics.com/privacy-policy) and [terms](https://supermetrics.com/terms-of-service).
+
+## Pricing
+
+Supermetrics is a paid product with a free trial. Signing in through the plugin starts the trial if you don't have an account yet.
+
+## Support
+
+- Plugin issues: [open an issue](https://github.com/supermetrics-public/claude-marketing-plugin/issues)
+- Account, connector or data questions: [Supermetrics support](https://supermetrics.com/support), or ask Claude to "contact Supermetrics support".
+
+## For contributors
+
+Test locally without installing:
 
 ```
 claude --plugin-dir ./plugins/supermetrics-marketing
 ```
 
-Or test the full marketplace flow against the local repo:
+Each skill has the same layout: a `SKILL.md` (when to trigger, principles, chart framework), `references/workflows.md` (step-by-step prompts), `scripts/` (Python helpers that take a CSV and return a table) and `assets/` (deliverable templates). Slash commands are in `commands/`, and the bundled connector is defined in `.mcp.json`.
 
-```
-/plugin marketplace add ./
-/plugin install supermetrics-marketing@supermetrics
-```
-
-Then try invoking a skill: `/supermetrics-marketing:performance-marketer` (after which Claude reads the SKILL.md and the user describes their actual question). Most users will never type the skill name — they'll just describe what they want and Claude will load the right skill automatically.
-
-## What's inside each skill
-
-Every skill follows the same shape:
-
-```
-skills/<persona>/
-├── SKILL.md              # When to trigger, principles, viz framework, capability index
-├── references/
-│   └── workflows.md      # 7 workflow patterns with full prompt sequences
-├── scripts/              # 7 Python helper scripts (CSV in, table out)
-└── assets/               # 6–7 markdown templates for the final deliverables
-```
-
-The SKILL.md descriptions use natural trigger phrasings — they fire on "my Facebook campaign is underperforming" or "did our SF event move the needle," not just literal mentions of "Supermetrics."
-
-Each SKILL.md contains a **dynamic visualization framework** — a decision table from question type to chart family. Claude reasons about which chart fits the data and the question rather than following a fixed recipe.
-
-When a workflow produces a file, the skill chains to a built-in skill (`pptx` for decks, `docx` for Word docs, `xlsx` for spreadsheets). When other connectors are available (CRM, Gmail, Drive, Slack, Calendar), workflows use them opportunistically — never assumed.
-
-## Standard visualization palette
-
-All charts across all skills use the same palette:
-
-- Green `#10b981` — improving / positive
-- Red `#ef4444` — declining / negative
-- Indigo `#6366f1` — neutral / baseline
-- Amber `#f59e0b` — flagged / warning
-
-Color is applied by business meaning, not by sign. CPC up 20% is red (bad), CPA down 15% is green (good).
-
-## Core principles shared across all skills
-
-1. **Pull, then analyze.** Don't combine data retrieval and complex analysis in one tool call.
-2. **Show, don't tell.** When numbers are worth comparing, build a chart, not a table.
-3. **One serious query at a time.** Sequence heavy queries rather than batching them.
-
-## Validation
-
-The marketplace catalog and plugin manifest pass `claude plugin validate`. Each skill's `SKILL.md` and bundled scripts have been tested with synthetic data.
-
-## Repository structure
-
-```
-.
-├── .claude-plugin/
-│   └── marketplace.json          # Marketplace catalog
-├── plugins/
-│   └── supermetrics-marketing/
-│       ├── .claude-plugin/
-│       │   └── plugin.json       # Plugin manifest
-│       └── skills/               # Six persona-aligned skill sets
-│           ├── performance-marketer/
-│           ├── marketing-leader/
-│           ├── demand-gen/
-│           ├── content-marketer/
-│           ├── field-marketer/
-│           └── ecommerce-marketer/
-└── README.md
-```
+Run `claude plugin validate --strict .` before opening a PR. CI runs it too.
 
 ## License
 
-MIT.
-
-## Support
-
-Issues with the plugin: file an issue on this repo.
-Issues with the Supermetrics connector itself: contact support@supermetrics.com.
+MIT

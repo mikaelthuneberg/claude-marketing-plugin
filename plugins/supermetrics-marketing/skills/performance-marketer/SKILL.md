@@ -11,11 +11,11 @@ This skill helps performance marketers analyze paid campaigns across Google Ads,
 
 These workflows rely on the **Supermetrics connector for Claude**, which pulls live data from connected ad platforms. Before running anything, check that the connector is active — look for Supermetrics tools in this session (e.g. `data_query`, `accounts_discovery`, `field_discovery`).
 
-If they aren't present, the user doesn't have the connector installed yet. Stop and prompt them:
+If they aren't present, the user hasn't signed in to the bundled connector yet (or is on claude.ai without the plugin's connector). Stop and prompt them:
 
-> This workflow needs the Supermetrics connector for Claude to pull your live ad data. You can install it at https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80
+> This workflow needs the Supermetrics connector for Claude to pull your live ad data. It ships with this plugin — run `/mcp`, select **supermetrics** and sign in (a free trial account works). Then run `/supermetrics-marketing:setup` to connect your platforms.
 >
-> Once it's installed, authenticate and connect at least one ad platform (Google Ads, Facebook Ads, LinkedIn Ads, etc.).
+> Once signed in, connect at least one ad platform (Google Ads, Facebook Ads, LinkedIn Ads, etc.).
 
 Don't fabricate placeholder data, and don't ask the user to paste a CSV unless they explicitly prefer that route.
 

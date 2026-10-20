@@ -13,7 +13,7 @@ These workflows rely on the **Supermetrics connector for Claude**. Pre-event ana
 
 Before running anything, check that the connector is active — look for Supermetrics tools (`data_query`, `accounts_discovery`, etc.). If they aren't present, prompt the user:
 
-> This workflow needs the Supermetrics connector for Claude. Install it at https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80
+> This workflow needs the Supermetrics connector for Claude. It ships with this plugin — run `/mcp`, select **supermetrics** and sign in (a free trial account works). Then run `/supermetrics-marketing:setup` to connect your platforms.
 >
 > Connect at least one ad platform (LinkedIn Ads, Google Ads, or Facebook Ads). For geo-targeted analysis, make sure campaigns have location targeting so the data is available at the regional level.
 

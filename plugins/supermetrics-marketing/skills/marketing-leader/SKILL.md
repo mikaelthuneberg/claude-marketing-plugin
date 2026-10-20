@@ -13,9 +13,9 @@ These workflows rely on the **Supermetrics connector for Claude**, which pulls l
 
 If they aren't present, prompt the user:
 
-> This workflow needs the Supermetrics connector for Claude. Install it at https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80
+> This workflow needs the Supermetrics connector for Claude. It ships with this plugin — run `/mcp`, select **supermetrics** and sign in (a free trial account works). Then run `/supermetrics-marketing:setup` to connect your platforms.
 >
-> Once it's installed, authenticate and connect the ad platforms you want covered in the analysis.
+> Once signed in, connect the ad platforms you want covered in the analysis.
 
 Don't fabricate placeholder data. Executive decisions get made on real numbers.
 
