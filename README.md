@@ -1,6 +1,6 @@
 # Supermetrics for Claude: marketing data and analytics workflows
 
-**Ask Claude about your marketing performance and get answers from your live data.** This plugin connects Claude to Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and 150+ other marketing platforms through [Supermetrics](https://supermetrics.com). It adds 42 analysis workflows built by marketers.
+**Ask Claude about your marketing performance, act on it, and share it.** This plugin connects Claude to Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and 150+ other marketing platforms through [Supermetrics](https://supermetrics.com). It adds 42 analysis workflows built by marketers, campaign management on seven ad platforms, and live Supermetrics Studio dashboards you can share.
 
 The Supermetrics connector is included: install the plugin, sign in once, and start asking.
 
@@ -11,9 +11,11 @@ The Supermetrics connector is included: install the plugin, sign in once, and st
 /plugin install supermetrics-marketing@supermetrics
 ```
 
-Then run `/supermetrics-marketing:setup`. It signs you in to Supermetrics (OAuth, or a free trial if you're new), shows which platforms are connected, helps you connect one, and runs your first report.
+On Claude Code 2.1.275 or later you can do both in one step: `/plugin install supermetrics-marketing --marketplace supermetrics-public/claude-marketing-plugin`.
 
-> Using claude.ai or Claude Desktop? Add the [Supermetrics connector](https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80) from the connector directory.
+Then run `/supermetrics-marketing:setup`. It signs you in to Supermetrics with OAuth (new users get an account with a 14-day free trial, no credit card needed), shows which platforms are connected, helps you connect one, and runs your first report.
+
+> Using claude.ai or the Claude desktop app's chat? Add the [Supermetrics connector](https://claude.ai/directory/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80) from the connector directory.
 
 ## Try asking
 
@@ -28,6 +30,9 @@ Then run `/supermetrics-marketing:setup`. It signs you in to Supermetrics (OAuth
 - "Which landing pages get traffic but don't convert?"
 - "What's our blended ROAS by day of week across Google and Meta?"
 - "Which of my clients need attention this week?"
+- "Launch a paused Google Ads search campaign for our spring sale with a 50 EUR daily budget."
+- "Pause the ads with CPA over 2x target after showing me the list."
+- "Turn this weekly report into a live Studio dashboard I can share with my client."
 
 ## Slash commands
 
@@ -47,10 +52,11 @@ Then run `/supermetrics-marketing:setup`. It signs you in to Supermetrics (OAuth
 | `/supermetrics-marketing:launch-check` | Pre-launch QA: UTMs, landing page speed, redirects, copy length limits |
 | `/supermetrics-marketing:exec-summary` | 90-day cross-channel overview, ready for a deck |
 | `/supermetrics-marketing:share-dashboard` | Turn an analysis into a live Supermetrics Studio dashboard link |
+| `/supermetrics-marketing:launch-campaign` | Plan and launch a paused campaign on Google, Meta, Microsoft, TikTok or LinkedIn, with your approval at each step |
 
 **Managing several clients?** Ask "how are all my accounts doing?" The portfolio analyst sweeps every connected account and returns one table with the accounts that need attention listed first.
 
-**It remembers your goals.** Targets and context you save, such as "PMax is paused on purpose", are stored with your Supermetrics team. Every teammate's analysis uses them, in Claude or any other AI assistant.
+**It remembers your goals.** Targets and context you save, such as "PMax is paused on purpose", are stored with your Supermetrics team. Every teammate's analysis uses them, in Claude or any other AI assistant connected to Supermetrics.
 
 You don't need to remember any of these. Describe what you want and Claude picks the right workflow.
 
@@ -65,11 +71,20 @@ You don't need to remember any of these. Describe what you want and Claude picks
 | `field-marketer` | Events and field | Pre-event ROI · Post-event geo-lift · Event portfolio · Event pipeline · Account engagement · Webinar deep dive · Partner events |
 | `ecommerce-marketer` | Ecommerce acquisition | Blended ROAS · Promo anomalies · SKU performance · New vs returning ROAS · AOV and basket · Retention cohorts · Promo planning |
 
+Four more skills work alongside these:
+
+| Skill | What it does |
+|---|---|
+| `campaign-management` | Create and edit campaigns, budgets, bids, targeting and ads on Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads, LinkedIn Ads, Snapchat and ChatGPT Ads |
+| `studio-dashboards` | Publish any analysis as a live Supermetrics Studio dashboard that updates itself |
+| `business-profile` | Saves your targets, budgets and known context, and applies them to every analysis |
+| `get-started` | First-run sign-in, connecting a platform and a first report |
+
 Each workflow pulls data first and then analyzes it. Results come back as charts that colour each change by whether it's good or bad for the business. You can also get a Word doc, spreadsheet or deck when you need something to share.
 
 ## Supported platforms
 
-**Paid media:** Google Ads, Meta Ads (Facebook and Instagram), LinkedIn Ads, TikTok Ads, Microsoft Advertising, Amazon Ads, Snapchat, Pinterest, Reddit, X Ads, DV360, Criteo and more.
+**Paid media:** Google Ads, Meta Ads (Facebook and Instagram), LinkedIn Ads, TikTok Ads, Microsoft Advertising, Amazon Ads, Snapchat, Pinterest, Reddit, X Ads, ChatGPT Ads, DV360, Criteo and more.
 **Analytics and SEO:** Google Analytics 4, Search Console, Adobe Analytics, Semrush, YouTube.
 **Social:** Facebook and Instagram insights, LinkedIn Pages, TikTok organic.
 **Ecommerce and CRM:** Shopify, HubSpot, Salesforce, Klaviyo, Mailchimp.
@@ -78,15 +93,16 @@ Each workflow pulls data first and then analyzes it. Results come back as charts
 
 ## Privacy and safety
 
-- **Read-only.** These workflows never change campaigns, budgets or settings in your ad accounts. They only recommend changes.
+- **Analysis only recommends.** Reports, audits and checks never change campaigns, budgets or settings in your ad accounts.
+- **Campaign changes happen only when you ask.** Claude shows the exact change and waits for your approval. Writes work only on ad accounts where the person who connected them has turned writes on in the [Supermetrics Hub](https://hub.supermetrics.com/write-settings), where they can also require a separate sign-off before budget changes or campaigns going live. New campaigns are always created paused, and every change is logged in [campaign history](https://hub.supermetrics.com/campaign-history).
 - **Your data goes only to Supermetrics and your Claude session.** Supermetrics fetches it with your own platform logins, and the plugin adds no telemetry or hooks.
-- **You choose what's connected**, and you can revoke access at any time in the [Supermetrics Hub](https://hub.supermetrics.com).
+- **You choose what's connected.** Remove a platform connection at any time on the [Data sources page](https://hub.supermetrics.com/token-management) of the Supermetrics Hub.
 
 See the [privacy policy](https://supermetrics.com/privacy-policy) and [terms](https://supermetrics.com/terms-of-service).
 
 ## Pricing
 
-Supermetrics is a paid product with a free trial. Signing in through the plugin starts the trial if you don't have an account yet.
+Supermetrics is a paid product. Signing in for the first time creates an account with a 14-day free trial, no credit card needed. To keep using Supermetrics in Claude afterwards, your subscription needs the AI Chats destination. See [pricing](https://supermetrics.com/pricing).
 
 ## Support
 

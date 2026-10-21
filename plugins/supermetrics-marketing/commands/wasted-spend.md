@@ -12,4 +12,4 @@ Flag:
 - **Search terms** (Google Ads, Microsoft Ads): zero-conversion terms with meaningful spend. Leave out brand terms and terms already matching a keyword, then propose negatives. Follow the "Search term audit and negative keywords" workflow.
 - **Geography and products**, where the data has them: regions or products with a CPA over 2x the account's own average.
 
-Output a table of the items, the monthly saving if each one is cut, and the proposed action. This is analysis only: change nothing in the ad accounts. If the user wants to apply changes, they should do it in the platform or ask explicitly.
+Output a table of the items, the monthly saving if each one is cut, and the proposed action. This is analysis only: change nothing in the ad accounts. At the end, offer once to apply the cuts (pauses, negatives, budget moves) with the campaign-management skill, after the user approves each change.

@@ -12,17 +12,17 @@ Take the user from install to their first real answer in as few turns as possibl
 Call `manage_user_and_team` with `action: get_info`.
 
 - **Tool not available or auth error:** the bundled `supermetrics` connector isn't signed in. Tell the user:
-  > Run `/mcp`, select **supermetrics** and sign in with your Supermetrics account. No account? Signing in lets you start a free trial.
+  > Run `/mcp`, select **plugin:supermetrics-marketing:supermetrics** and sign in with your Supermetrics account. No account? Signing in creates one with a 14-day free trial, no credit card needed.
   >
-  > On claude.ai or Claude Desktop, add the connector from https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80 instead.
+  > In claude.ai chat, add the connector from https://claude.ai/directory/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80 instead.
 
   Then stop and wait for them. Never ask for an API key or password in chat.
-- **Signed in, but no active license or expired trial:** don't loop on sign-in. Say so plainly and give the upgrade link the response returns.
+- **Signed in, but `license` holds an error, or a tool returns a license or trial error:** don't loop on sign-in. Say so plainly and follow the note in the response; buying is at https://supermetrics.com/pricing, and the plan must include the AI Chats destination. For details, call `supermetrics_guide` with `mode: license_and_trials`.
 - **Success:** greet them by name and team in one line.
 
 ## 2. See what's connected
 
-Call `data_source_discovery` (compact output) to see available sources, then `accounts_discovery` for the platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
+Call `data_source_discovery` with `compress: true`; each source's `authentication_status` shows what's connected. Then call `accounts_discovery` for the connected platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
 
 If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `manage_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`.
 
@@ -36,4 +36,4 @@ Ask what they're optimizing for (target CPA, ROAS or monthly budget). Save it wi
 
 ## 5. Point to what's next
 
-Suggest three questions tailored to what they connected. Mention `/supermetrics-marketing:daily-check` (which can be scheduled), `/supermetrics-marketing:wasted-spend` and `/supermetrics-marketing:briefing`. If they manage several clients, mention the portfolio analyst ("how are all my accounts doing?").
+Suggest three questions tailored to what they connected. Mention `/supermetrics-marketing:daily-check` (which can be scheduled), `/supermetrics-marketing:wasted-spend` and `/supermetrics-marketing:briefing`. If they manage several clients, mention the portfolio analyst ("how are all my accounts doing?"). Also say Claude can launch and edit campaigns with their approval (`/supermetrics-marketing:launch-campaign`) and publish any analysis as a live Studio dashboard (`/supermetrics-marketing:share-dashboard`).

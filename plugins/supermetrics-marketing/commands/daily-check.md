@@ -12,4 +12,4 @@ Run a read-only morning check for: $ARGUMENTS (default: all connected ad account
 
 Open with **All clear** or **Needs a look (N)**, then a short table and at most 3 bullets. Treat moves based on fewer than 10 conversions as noise. Never change anything in the ad accounts.
 
-At the end, if the user isn't already running this on a schedule, offer once: "Want this every weekday morning? In Claude Code, run `/schedule` with `/supermetrics-marketing:daily-check`. In the Claude app, create a scheduled task with the same prompt."
+At the end, if the user isn't already running this on a schedule, offer once: "Want this every weekday morning? In the Claude desktop app, open the Code tab, then Scheduled > New task, turn on Only on this computer, pick any local folder, choose Weekdays and use `/supermetrics-marketing:daily-check` as the instructions. Click Run now once and always-allow the Supermetrics tools so later runs don't stop for approval." Don't suggest `/schedule`: cloud tasks don't load locally installed plugins.

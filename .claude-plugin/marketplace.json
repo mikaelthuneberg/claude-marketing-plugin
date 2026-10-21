@@ -5,14 +5,14 @@
     "email": "support@supermetrics.com"
   },
   "metadata": {
-    "description": "Supermetrics for Claude: marketing data from 150+ platforms plus ready-made analytics workflows."
+    "description": "Supermetrics for Claude: marketing data from 150+ platforms, analytics workflows, campaign management and live dashboards."
   },
   "plugins": [
     {
       "name": "supermetrics-marketing",
       "displayName": "Supermetrics Ads & Marketing Analytics",
       "source": "./plugins/supermetrics-marketing",
-      "description": "Marketing reporting and analytics for Google Ads, Facebook/Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and 150+ sources via the Supermetrics connector. Find wasted ad spend, track ROAS and CPA, check budget pacing and ad fatigue, reconcile platform conversions with GA4, and monitor many client ad accounts for agencies. 42 ready-made workflows, daily checks and executive reports. Sign in once with OAuth; read-only, never changes your ad accounts.",
+      "description": "Marketing reporting, analytics and campaign management for Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and 150+ sources via Supermetrics. Find wasted spend, track ROAS and budget pacing, spot ad fatigue, launch and edit campaigns with your approval, and share live Studio dashboards. 42 workflows, daily checks and multi-account sweeps for agencies. Analysis never changes ad accounts; campaign writes need your OK and start paused.",
       "version": "1.1.0",
       "author": {
         "name": "Supermetrics",
@@ -28,6 +28,10 @@
         "ppc",
         "paid-media",
         "paid-social",
+        "campaign-management",
+        "ad-management",
+        "dashboards",
+        "supermetrics-studio",
         "reporting",
         "marketing-reporting",
         "google-ads",
@@ -41,7 +45,7 @@
         "snapchat-ads",
         "pinterest-ads"
       ],
-      "homepage": "https://supermetrics.com/integrations/claude",
+      "homepage": "https://supermetrics.com/products/claude",
       "repository": "https://github.com/supermetrics-public/claude-marketing-plugin",
       "license": "MIT"
     }

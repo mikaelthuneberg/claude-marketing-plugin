@@ -30,6 +30,7 @@ If only one side is connected, surface that immediately. Most of the value in th
   - Check whether campaigns share a budget before advising budget moves.
   - If the user disputes a number, re-pull the data before conceding.
 - **Answer shape:** conclusion first, then business impact, then next actions. Close with a one-line-per-pull "How I got this".
+- **Acting on findings.** These workflows recommend; they don't change campaigns. If the user wants to apply a budget move or pause, hand off to the `campaign-management` skill, which asks for explicit approval of each change.
 
 ## Core principles
 
@@ -89,22 +90,22 @@ For paired-bar comparisons (platform-reported vs GA4-measured), use indigo for t
 
 ### Ad hoc analysis
 
-For one-off questions outside the two bundled workflows (e.g. "do leads coming through landing page A have different MQL rates than leads from landing page B?", "is there a day-of-week effect on lead quality?"), write fresh analysis code in chat.
+For one-off questions outside the seven bundled workflows (e.g. "do leads coming through landing page A have different MQL rates than leads from landing page B?", "is there a day-of-week effect on lead quality?"), write fresh analysis code in chat.
 
 ## Other Claude capabilities to leverage
 
 **Built-in document skills.** When the deliverable is a file:
-- Word documents (the sales leadership update is often this) → use the `docx` skill at `/mnt/skills/public/docx/SKILL.md`
-- Spreadsheets (channel-level reconciliation tables, lead-source breakdowns) → use the `xlsx` skill at `/mnt/skills/public/xlsx/SKILL.md`
-- Slide decks (when this becomes a planning input) → use the `pptx` skill at `/mnt/skills/public/pptx/SKILL.md`
+- Word documents (the sales leadership update is often this) → the `docx` skill
+- Spreadsheets (channel-level reconciliation tables, lead-source breakdowns) → the `xlsx` skill
+- Slide decks (when this becomes a planning input) → the `pptx` skill
 
-Read the relevant SKILL.md *before* building the file.
+If one of these skills is available, read its SKILL.md *before* building the file.
 
-**Other connectors when they're available.** If the user has HubSpot or Salesforce connected, you can pull MQL conversion rate and deal-size data by source — this is the single most valuable join in demand gen, because it answers "are we buying real leads or just clicks?" with actual pipeline data, not just form-fill counts. If Gmail is connected, sales-leadership emails can become drafts. If Slack is connected, short updates can be posted to the right channel.
+**CRM data through Supermetrics.** Supermetrics also connects HubSpot (`HS`, `HSCON`), Salesforce (`SF`), Pipedrive, Zoho CRM and other CRMs. If one is connected, you can pull MQL conversion rate and deal-size data by source — this is the single most valuable join in demand gen, because it answers "are we buying real leads or just clicks?" with actual pipeline data, not just form-fill counts. **Other connectors:** if Gmail is connected, sales-leadership emails can become drafts. If Slack is connected, short updates can be posted to the right channel.
 
 **Web search.** Useful for industry CPL benchmarks, recent platform changes (e.g. iOS 14.5+ effects on Facebook attribution that might explain a measurement drop), or fresh research on B2B lead-quality patterns.
 
-**Clarifying questions.** Use `ask_user_input_v0` for multiple-choice clarifications — attribution model preference, time window, which lead definition counts.
+**Clarifying questions.** Use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code) for clarifications — attribution model preference, time window, which lead definition counts.
 
 ## When to use the bundled workflows
 
@@ -143,10 +144,10 @@ Read `references/workflows.md` when the user's request matches.
 
 **UTM hygiene is everything.** A campaign with missing UTM parameters will look like "(direct) / (none)" in GA4 even when it generated thousands of clicks. Before any reconciliation, check that ad platform clicks roughly match GA4 sessions from that source. If they're more than ~25% apart, the issue is tagging, not performance.
 
-**Attribution window mismatch is a trap.** Facebook defaults to 7-day click / 1-day view; GA4 defaults to data-driven. These will never match exactly. Frame comparisons as "directional, not exact."
+**Attribution window mismatch is a trap.** Facebook defaults to 7-day click / 1-day view; GA4's reporting attribution model defaults to data-driven. These will never match exactly. Frame comparisons as "directional, not exact."
 
-**Pipeline data lives in the CRM, not in Supermetrics.** For MQL-to-SQL conversion rates, the user needs a CRM connector (HubSpot, Salesforce). Ask before assuming.
+**Pipeline data lives in the CRM.** For MQL-to-SQL conversion rates, the user needs a CRM connected in Supermetrics (HubSpot, Salesforce, Pipedrive, Zoho CRM and others). Check with `data_source_discovery` rather than assuming.
 
-**Bot traffic skews B2B clicks heavily.** Especially on LinkedIn Ads. A campaign showing 12% CTR and 0.1% conversion rate is more likely bot traffic than bad creative. Flag it before recommending action.
+**Bot traffic skews B2B clicks heavily.** Especially on display and audience-network placements (including LinkedIn Audience Network). A campaign showing 12% CTR and 0.1% conversion rate is more likely bot traffic than bad creative. Flag it before recommending action.
 
 **"Cost per lead" is ambiguous.** A LinkedIn Lead Gen Forms "lead" is auto-filled and lightly qualified; a Google Ads form-submission "lead" has at least typed an email; a CRM "lead" has been scored. Always name which kind of lead is being counted.
