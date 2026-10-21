@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "supermetrics-marketing",
-      "displayName": "Supermetrics Marketing Analytics",
+      "displayName": "Supermetrics Ads & Marketing Analytics",
       "source": "./plugins/supermetrics-marketing",
       "description": "Marketing reporting and analytics for Google Ads, Facebook/Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and 150+ sources via the Supermetrics connector. Find wasted ad spend, track ROAS and CPA, check budget pacing and ad fatigue, reconcile platform conversions with GA4, and monitor many client ad accounts for agencies. 42 ready-made workflows, daily checks and executive reports. Sign in once with OAuth; read-only, never changes your ad accounts.",
       "version": "1.1.0",
