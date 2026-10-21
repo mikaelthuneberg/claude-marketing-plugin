@@ -16,17 +16,24 @@ Call `manage_user_and_team` with `action: get_info`.
   >
   > On claude.ai or Claude Desktop, add the connector from https://claude.ai/directory/connectors/cc599e7b-8c59-4e89-9bf0-36d47bb9ec80 instead.
 
-  Then stop and wait for them.
-- **Success:** greet them by name and team in one line. If the response shows no active license or an expired trial, say so plainly and point to the upgrade link it returns.
+  Then stop and wait for them. Never ask for an API key or password in chat.
+- **Signed in, but no active license or expired trial:** don't loop on sign-in. Say so plainly and give the upgrade link the response returns.
+- **Success:** greet them by name and team in one line.
 
 ## 2. See what's connected
 
 Call `data_source_discovery` (compact output) to see available sources, then `accounts_discovery` for the platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
 
-If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `manage_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`.
+If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `manage_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`.
 
 ## 3. First answer
 
 Once at least one account is connected, run one small useful report straight away — last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (or sessions and conversions for GA4) — and show it as a compact chart or table.
 
-Finish with three example questions tailored to what they connected, and mention the slash commands: `/supermetrics-marketing:weekly-performance`, `/supermetrics-marketing:wasted-spend`, `/supermetrics-marketing:budget-pacing`, `/supermetrics-marketing:exec-summary`.
+## 4. Save their goals
+
+Ask what they're optimizing for (target CPA, ROAS or monthly budget). Save it with the `business-profile` skill so later analyses judge results against it. Skip this if a profile already exists.
+
+## 5. Point to what's next
+
+Suggest three questions tailored to what they connected. Mention `/supermetrics-marketing:daily-check` (which can be scheduled), `/supermetrics-marketing:wasted-spend` and `/supermetrics-marketing:briefing`. If they manage several clients, mention the portfolio analyst ("how are all my accounts doing?").

@@ -27,19 +27,30 @@ Then run `/supermetrics-marketing:setup`. It signs you in to Supermetrics (OAuth
 - "Did our San Francisco event lift branded search and traffic in the Bay Area?"
 - "Which landing pages get traffic but don't convert?"
 - "What's our blended ROAS by day of week across Google and Meta?"
+- "Which of my clients need attention this week?"
 
 ## Slash commands
 
 | Command | What it does |
 |---|---|
 | `/supermetrics-marketing:setup` | Sign in, check connected platforms, connect one, run a first report |
+| `/supermetrics-marketing:set-targets` | Save your KPIs, targets, budgets and known context; every analysis then uses them |
+| `/supermetrics-marketing:daily-check` | Morning check: yesterday vs the 7-day average, pacing, tracking breaks. Can be scheduled |
+| `/supermetrics-marketing:briefing` | Weekly cross-channel briefing: the one priority, what's working, what to ignore |
 | `/supermetrics-marketing:weekly-performance` | Week-over-week review with prioritised actions |
-| `/supermetrics-marketing:wasted-spend` | Non-converting campaigns, ads and search terms, with the estimated saving |
+| `/supermetrics-marketing:wasted-spend` | Non-converting campaigns, search terms, products and regions, with the estimated saving |
 | `/supermetrics-marketing:ad-fatigue` | Ads with rising frequency and falling CTR |
 | `/supermetrics-marketing:budget-pacing` | Month-to-date pacing and a month-end forecast per channel |
 | `/supermetrics-marketing:roas-report` | Blended and per-channel ROAS with day-of-week patterns |
+| `/supermetrics-marketing:tracking-check` | Can you trust your conversions? Ad platforms vs GA4 vs store or CRM, plus UTM checks |
 | `/supermetrics-marketing:funnel-audit` | Reconcile what ad platforms report with what GA4 saw |
+| `/supermetrics-marketing:launch-check` | Pre-launch QA: UTMs, landing page speed, redirects, copy length limits |
 | `/supermetrics-marketing:exec-summary` | 90-day cross-channel overview, ready for a deck |
+| `/supermetrics-marketing:share-dashboard` | Turn an analysis into a live Supermetrics Studio dashboard link |
+
+**Managing several clients?** Ask "how are all my accounts doing?" The portfolio analyst sweeps every connected account and returns one table with the accounts that need attention listed first.
+
+**It remembers your goals.** Targets and context you save, such as "PMax is paused on purpose", are stored with your Supermetrics team. Every teammate's analysis uses them, in Claude or any other AI assistant.
 
 You don't need to remember any of these. Describe what you want and Claude picks the right workflow.
 
@@ -67,7 +78,7 @@ Each workflow pulls data first and then analyzes it. Results come back as charts
 
 ## Privacy and safety
 
-- **Read-only.** These workflows never change campaigns, budgets or settings in your ad accounts.
+- **Read-only.** These workflows never change campaigns, budgets or settings in your ad accounts. They only recommend changes.
 - **Your data goes only to Supermetrics and your Claude session.** Supermetrics fetches it with your own platform logins, and the plugin adds no telemetry or hooks.
 - **You choose what's connected**, and you can revoke access at any time in the [Supermetrics Hub](https://hub.supermetrics.com).
 
@@ -90,7 +101,7 @@ Test locally without installing:
 claude --plugin-dir ./plugins/supermetrics-marketing
 ```
 
-Each skill has the same layout: a `SKILL.md` (when to trigger, principles, chart framework), `references/workflows.md` (step-by-step prompts), `scripts/` (Python helpers that take a CSV and return a table) and `assets/` (deliverable templates). Slash commands are in `commands/`, and the bundled connector is defined in `.mcp.json`.
+Each skill has the same layout: a `SKILL.md` (when to trigger, principles, chart framework), `references/workflows.md` (step-by-step prompts), `scripts/` (Python helpers that take a CSV and return a table) and `assets/` (deliverable templates). Slash commands are in `commands/`, agents in `agents/`, and the bundled connector is defined in `.mcp.json`.
 
 Run `claude plugin validate --strict .` before opening a PR. CI runs it too.
 

@@ -21,6 +21,18 @@ Before running anything, check that the connector is active — look for Superme
 
 If purchase tracking is misconfigured (conversion values missing or zeroed), surface this immediately — ROAS analysis without conversion values is meaningless.
 
+## Before you analyze
+
+- **Load the business profile.** Call `manage_business_context` (`get`) for saved targets, budgets and known context, and judge results against those rather than generic benchmarks (see the `business-profile` skill).
+- **Check tracking first.** If platform conversions and GA4 or backend numbers disagree by more than 20%, or spend continues with zero conversions, say so before any optimization advice. See `/supermetrics-marketing:tracking-check`.
+- **Evidence discipline:**
+  - Treat changes based on fewer than about 10 conversions as noise.
+  - Ignore items with under 1,000 impressions.
+  - Don't report new campaigns that are still in a learning phase as failures.
+  - Check whether campaigns share a budget before advising budget moves.
+  - If the user disputes a number, re-pull the data before conceding.
+- **Answer shape:** conclusion first, then business impact, then next actions. Close with a one-line-per-pull "How I got this".
+
 ## Core principles
 
 Three principles apply throughout every workflow:
